@@ -3,6 +3,7 @@ import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useEffect, useState } from "react";
 import supabase from "../../../auth"
+import Button_SignOut from "../Dashboard/components/Button_SignOut";
 
 export default function Login() {
     const [session, setSession] = useState(null);
@@ -47,7 +48,7 @@ export default function Login() {
         return (
             <div>
                 <div>Logged in!</div>
-                <button onClick={() => supabase.auth.signOut()}>Sign out</button>
+                <Button_SignOut/>
             </div>
         );
     }

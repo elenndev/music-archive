@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
 
 import React from "react"
-// import Post from "./InterfacePost"
-
-// interface toReadPost{
-//     id: number;
-
-// }
 
 const Button_PostReadMore: React.FC<{id: number}> = ({ id }) =>{
     return( 

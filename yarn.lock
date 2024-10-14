@@ -430,6 +430,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@re-dev/react-truncate@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@re-dev/react-truncate/-/react-truncate-0.4.2.tgz#58a0086362fa2b2cdecc0c8f94aefeb0770a189b"
+  integrity sha512-IOwjqMLCZd1puNeNVfepc6KNcan7pW40xdAe85TijLXshr2Wgww4MtofdYsA0YYYvXxnz9Q1xYGVP8Iw8N5ybA==
+
 "@remix-run/router@1.19.2":
   version "1.19.2"
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.19.2.tgz#0c896535473291cb41f152c180bedd5680a3b273"

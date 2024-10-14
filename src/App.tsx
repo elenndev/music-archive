@@ -14,7 +14,6 @@ import ProtectedRoute from './pages/Dashboard/ProtectedRoute';
 function App() {
 
   return (
-    // 
     <Routes>
 
       <Route path='/' element={<Home />}></Route>
