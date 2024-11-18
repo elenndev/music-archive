@@ -69,7 +69,7 @@ const LatestPosts = () => {
             <section className="container latest-posts">
                 <div className="container_header">
                     <h2>Últimas publicações</h2>
-                    <Link to={'/todas-publicacoes'} className="btn btn-secondary all-posts">Todas as publicações</Link>
+                    <Link to={'/todas-publicacoes'} className="btn btn-secondary all-posts" style={{marginRight: '20px'}}>Todas as publicações</Link>
                 </div>
                 {loading && <p>Carregando publicações...</p>}
                 {posts.map((post)=>(
