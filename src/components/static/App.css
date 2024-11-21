@@ -239,8 +239,18 @@ li{
 .btn.transparent{
   border: solid 1px var(--SecondaryColor);
   background: none;
+  color: var(--SecondaryColor);
+}
+.btn.transparent:hover{
+  color: var(--SecondaryColor);
 }
 
+.btn-danger {
+  background: #dc3545;
+}
+.btn-danger::after {
+  background: #780e19;
+}
 @keyframes toggleOn {
   0% {
     transform: translateX(0);

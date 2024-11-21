@@ -10,11 +10,16 @@ const Button_PostEdit: React.FC<{post: Post, editPost?: FunctionGetId}> = ({post
         console.error("DashboardContext não está disponível.");
         return null;
     }
-    const { setEditMode } = context;
+    const { setEditMode , onDrafts, setIsDraft} = context;
     function Edit(){
         setEditMode(true)
         EditPost(post._id,post.cover,post.title,post.content,post.cover_description)
 
+        if(onDrafts){
+            setIsDraft(true)
+        } else{
+            setIsDraft(false)
+        }
         if (editPost){
             editPost(post._id)}
     }

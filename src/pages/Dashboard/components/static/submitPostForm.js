@@ -6,7 +6,7 @@ import axios from 'axios';
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 
-const SubmitForm = async (event, reqType, postId, context) =>{
+const SubmitForm = async (event, reqType, draftOrPost, postId, context) =>{
     event.preventDefault()
     const form_submit = document.querySelector('#form_submit')
     const cover = document.querySelector('#cover').value
@@ -14,18 +14,13 @@ const SubmitForm = async (event, reqType, postId, context) =>{
     const editor = document.querySelector('div.ql-editor')
     const h1 = editor.querySelector("h1")
     // guardar url se e pra postagem mesmo ou rascunho
-    let reqURL = null
     let method = null
-    let type = reqType.reqType
-    let id = postId.id
+    let type = reqType
+    let reqURL = draftOrPost
+    let id = postId
     
     const {setEditMode, onDrafts} = context
 
-    if (onDrafts){
-        reqURL = "draft"
-    } else {
-        reqURL = 'post'
-    }
 
         if (!(cover.endsWith('webp'))){
             alert('Imagem com formato inválido, por favor tente usar uma imagem de formato webp')
@@ -58,6 +53,7 @@ const SubmitForm = async (event, reqType, postId, context) =>{
         //Formatar conteudos para o submit
         let result = null
         const title = editor.querySelector("h1").innerHTML
+        editor.removeChild(editor.querySelector("h1"))
         const content = editor.innerHTML
         let data = {
             cover: cover,

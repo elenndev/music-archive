@@ -17,8 +17,22 @@ main{
         label{
             margin-right: 5px;
         }
+        input{
+            margin-top: 10px; margin-bottom: 10px;
+
+        }
         button{
             border: none;
+        }
+        .buttons-area{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            column-gap: 10px;
+            width: fit-content;
+            .btn-danger:hover{
+                background: #cc1527;;
+            }
         }
     }
     

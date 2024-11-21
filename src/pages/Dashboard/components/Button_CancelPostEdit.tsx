@@ -18,7 +18,7 @@ const Button_CancelPostEdit = () => {
     }
 
     return(
-        <button type="button" className="btn btn-danger" onClick={exitEdit}><p>Cancelar edição</p></button>
+        <button type="button" className="btn btn-danger" onClick={exitEdit}>Cancelar edição</button>
     )
 }
 

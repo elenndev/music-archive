@@ -8,7 +8,7 @@ function EditPost(id,cover,title,content,cover_description){
     h1.textContent = title
     let post_title = h1.outerHTML
 
-    editor.innerHTML = content
+    editor.innerHTML = post_title + content
     input_cover.value = cover
     input_coverDescription.value = cover_description
 

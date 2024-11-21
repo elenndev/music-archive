@@ -15,9 +15,6 @@ const Form_post: React.FC<{
         width: '900px',
         marginTop: '20px'
     }
-    const submitStyle = {
-        marginTop: '10px'
-    }
 
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitFail, setIsSubmitFail] = useState(false)
@@ -27,16 +24,30 @@ const Form_post: React.FC<{
     if (!context) {
         throw new Error("DashboardContext não está disponível.");
     }
-    const { onEdit, setEditMode, setOnSubmittedPost } = context
+    const { onEdit, setEditMode, setOnSubmittedPost, isDraft} = context
 
     const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault()
+        let draftOrPost = ''
+        const button =  (event.nativeEvent as SubmitEvent).submitter
+        if(button){
+            if (button.classList.contains('draft')){
+                draftOrPost = 'draft'
+            } else {
+                draftOrPost= 'post'
+                setEditMode(false)
+                setReqType('post')
+            }
+        }
+
+
         setIsSubmitting(true)
         setIsSubmitFail(false)
         setIsSubmitSuccess(false)
         try {
             if(post_id){ id=post_id}
             
-            const result = await SubmitForm(event, { reqType }, {id} , context)
+            const result = await SubmitForm(event, reqType, draftOrPost, id , context)
             if (result !== null){
                 setIsSubmitting(true)
             }
@@ -74,31 +85,45 @@ const Form_post: React.FC<{
 
 
 
-
     return (
         <>
             <form onSubmit={handleSubmit} style={style} id="form_post">
                 <Editor />
                 <label>Capa da publicação:</label>
-                <input name="cover" type="url" id="cover" style={submitStyle} placeholder="Insira a a url da imagem"></input>
-                <input name="cover_description" type="text" id="cover_description" style={submitStyle} placeholder="Faça uma descrição da imagem"></input>
+                <input name="cover" type="url" id="cover" placeholder="Insira a a url da imagem"></input>
+                <input name="cover_description" type="text" id="cover_description" placeholder="Faça uma descrição da imagem"></input>
                 {isSubmitFail && <p style={{ color: 'red' }}>{isSubmitFail}</p>}
                 {isSubmitSuccess && <p style={{ color: 'green' }}>{isSubmitSuccess}</p>}
-                <button className="btn btn-primary"
-                    id="form_submit"
-                    style={submitStyle}
-                    type="submit"
-                    disabled={isSubmitting}>
-                    {onEdit
-                        ? (isSubmitting
-                            ? <>Salvando...</>
-                            : <>Salvar alterações</>)
-                        : (isSubmitting
-                            ? <>Salvando...</>
-                            : <>Enviar publicação</>)
+                
+                <span className="buttons-area">
+                    {!(onEdit && !isDraft) &&
+                        <button className="btn btn-secondary draft"
+                            id="form_submit"
+                            type="submit"
+                            disabled={isSubmitting}>
+                            {isSubmitting
+                                ? <>Salvando...</>
+                                : <>Salvar rascunho</>}
+                        </button>
                     }
-                </button>
-                {onEdit && !isSubmitting && <Button_CancelPostEdit />}
+
+                    <button className="btn btn-primary post"
+                        id="form_submit"
+                        type="submit"
+                        disabled={isSubmitting}>
+                        {onEdit && !isDraft
+                            ? (isSubmitting
+                                ? <>Salvando...</>
+                                : <>Salvar alterações</>)
+                            : (isSubmitting
+                                ? <>Salvando...</>
+                                : <>Enviar publicação</>)
+                        }
+                    </button>
+                    {onEdit && !isSubmitting && <Button_CancelPostEdit />}
+                </span>
+
+                
             </form>
         </>
     )

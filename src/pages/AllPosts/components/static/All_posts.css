@@ -127,12 +127,6 @@ main#main_all-posts{
                             width: 60%;
                         }
                     }
-                    .btn-danger {
-                        background: #dc3545;
-                    }
-                    .btn-danger::after {
-                        background: #780e19;
-                    }
                     .btn-secondary::after {
                         background: var(--SecondaryColorDecorate);
                     }

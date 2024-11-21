@@ -11,7 +11,7 @@ import musicboardLogo from "../../../components/musicboard.webp"
 
 
 const Aside = () => {
-    const [featuredPlaylist, setFeaturedPlaylist] = useState<string>('3AqqJn20LczJtoaHjVLipe?utm_source=generator')
+    const [featuredPlaylist, setFeaturedPlaylist] = useState<string>('')
 
     const getPlaylistLink = async () => {
         const response = await axios.get(`${SERVER_URL}/fast-infos`,{
@@ -60,7 +60,7 @@ const Aside = () => {
             </div>
             <div className="container featured_playlist">
                 <p className="container-header">Playlist em destaque</p>
-                {featuredPlaylist &&
+                {featuredPlaylist !== '' &&
                     <Iframe/>
                 }
             </div>

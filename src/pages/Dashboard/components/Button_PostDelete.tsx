@@ -13,7 +13,7 @@ const Button_PostDelete: React.FC<{id: string }> = ({ id }) =>{
     }
 
     const {setOnDeletePost, onDrafts} = context
-    const [reqURL, setReqURL] = useState(" ")
+    const [reqURL, setReqURL] = useState("")
 
     const handleDeletePost = async () => {
         if(onDrafts){
@@ -22,7 +22,7 @@ const Button_PostDelete: React.FC<{id: string }> = ({ id }) =>{
             setReqURL("post")
         }
         const confirmDelete = window.confirm("Tem certeza que deseja excluir essa publicação?")
-        if(reqURL){
+        if(reqURL != ""){
             if (confirmDelete){
                 const full_token = localStorage.getItem('token')
                 const response = await axios.delete(`${SERVER_URL}/delete-${reqURL}`,{
