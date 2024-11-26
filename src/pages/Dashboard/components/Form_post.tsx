@@ -36,7 +36,6 @@ const Form_post: React.FC<{
                 setReqType('draft')
             } else {
                 draftOrPost= 'post'
-                setEditMode(false)
                 setReqType('post')
             }
         }
@@ -52,18 +51,23 @@ const Form_post: React.FC<{
             if (result !== null){
                 setIsSubmitting(true)
             }
-            else if (result === 200 || result === 201 || result === 204) {
+            if (result === 200) {
                 setIsSubmitSuccess(true)
-            } else {
+                setOnSubmittedPost(true)
+                if (onEdit){
+                    setEditMode(false)
+                }
+            } else if (result === false){
+                setIsSubmitSuccess(false)
                 setIsSubmitFail(true)
+                if (onEdit){
+                    setReqType('put')
+                }
                 return
             }
         }finally {
             setIsSubmitting(false)
-            setOnSubmittedPost(true)
-            if (onEdit){
-                setEditMode(false)
-            }
+            
         }
     }
 

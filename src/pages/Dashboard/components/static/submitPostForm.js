@@ -25,7 +25,7 @@ const SubmitForm = async (event, reqType, draftOrPost, postId, context) => {
     if (reqURL == 'post') {
         if (!(cover.endsWith('webp'))) {
             alert('Imagem com formato inválido, por favor tente usar uma imagem de formato webp')
-            return
+            return false
         } else if (cover_description.length < 5) {
             alert('Por favor preencha corretamente o campo da descrição da capa da publicação')
             return
