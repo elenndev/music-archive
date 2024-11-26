@@ -32,7 +32,9 @@ const Form_post: React.FC<{
         const button =  (event.nativeEvent as SubmitEvent).submitter
         if(button){
             if (button.classList.contains('draft')){
+                console.log('draft')
                 draftOrPost = 'draft'
+                setReqType('draft')
             } else {
                 draftOrPost= 'post'
                 setEditMode(false)
