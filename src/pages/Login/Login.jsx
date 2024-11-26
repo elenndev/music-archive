@@ -16,35 +16,24 @@ export default function Login() {
     
 
     async function getSession(){
-        const checkSession = await checkAuth();
-        if (checkSession !== null) {
-            setIsLoading(false)
-            setSession(checkSession);
-        }
+        const checkTokenSession = await checkAuth();
+        setSession(checkTokenSession);
+        setIsLoading(false)
+        
     };
 
 
     const handleLogin = async(e) =>{
         setIsLoading(true)
         e.preventDefault()
-        const payload = {
+        const body = {
             username: username,
             password: password
         }
         try{
-            const response = await axios.post(`${API_URL}/login`, payload)
-            const token = response.data
-            localStorage.setItem('token', token)
-            if (response.data === false){
-                window.alert('Credenciais erradas, por favor tente novamente')
-                setSession(false)
-                setIsLoading(false)
-                setUsername("")
-                setPassword("")
-                return
-            }
+            const response = await axios.post(`${API_URL}/login`, body, {withCredentials: true})
         } catch (error){
-            return error
+            window.alert(error.response.data.detail )
         }
         setUsername("")
         setPassword("")

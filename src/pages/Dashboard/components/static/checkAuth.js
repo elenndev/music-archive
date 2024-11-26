@@ -3,21 +3,15 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 
 export async function checkAuth(){
-    const full_token = localStorage.getItem('token')
-    if (!full_token){
+    try{
+        const response = await axios.get(`${API_URL}/check-token`,{withCredentials: true})
+        if (response.data.status_code == 200){
+            return true
+        }
+    } catch(error){
+        console.error('Erro ao fazer o check token |  Erro: ', error.response.data.detail)
         return false
     }
 
-    try{
-        const validateToken = await axios.get(`${API_URL}/check-token`,{
-            headers: {
-                Authorization: `Bearer ${full_token}`
-            }
-        })
-        return validateToken.data
-    } catch(error){
-        console.error('Erro ao fazer o check token', error)
-        return false
-    }
     
 }
