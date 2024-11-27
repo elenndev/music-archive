@@ -11,6 +11,7 @@ const Button_SignOut: React.FC = () =>{
                 navigate('/blog-login')
             }
         } catch(error: any){
+            window.alert("Erro ao fazer o logout")
             console.error('Erro ao fazer o logout | Erro: ', error.response.data.detail)
         }
 

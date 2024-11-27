@@ -5,13 +5,15 @@ import cleanForm from "./static/cleanForm"
 const Button_GoToDrafts = () =>{
     const context = useContext(DashboardContext)
     if (!context){
-        console.error("DasoardContext não está disponível")
+        console.error("DashboardContext não está disponível")
         return null
     }
-    const {onDrafts,setOnDrafts} = context
+    const {onDrafts, setOnDrafts, setIsDraft, setEditMode} = context
     const handleSetOnDrafts = () => {
         if(onDrafts){
             setOnDrafts(false)
+            setIsDraft(false)
+            setEditMode(false)
             cleanForm()
         } else {
             setOnDrafts(true)

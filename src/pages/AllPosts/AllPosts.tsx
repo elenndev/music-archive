@@ -7,7 +7,7 @@ import { DashboardContext } from '../Dashboard/components/Context_Dashboard.tsx'
 import Model_Post from '../../components/InterfacePost.tsx';
 import Header from '../../components/Header.tsx';
 import Footer from '../../components/Footer.tsx';
-
+import { checkAuth } from "../../middleware.js";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../components/static/themes.js";
 import GlobalTheme from "../../components/static/globals.js";
@@ -32,12 +32,15 @@ onEdit?: boolean
 
     const getData = async () => {
         if (onDrafts){
-            const full_token = localStorage.getItem('token')
+            const auth = await checkAuth()
+            if (auth.data.status_code !== 200){ 
+                setError("Token inválido")
+                setLoading(false)
+                return
+            }
+
             try{
                 const response = await axios.get(`${SERVER_URL}/get-drafts`,{
-                    headers: {
-                        Authorization: `Bearer ${full_token}`
-                    },
                     params: {
                         sort: 1
                     }
@@ -48,7 +51,7 @@ onEdit?: boolean
                 }
 
             }catch(error){
-                console.error("Problemas ao acessar")
+                console.error("Problemas ao acessar os dados: ", error)
             }
         } else {
             try{
@@ -97,6 +100,7 @@ onEdit?: boolean
     
     // POSTS
     const {submittedPost, setOnSubmittedPost, deletePost, setOnDeletePost, onDrafts} = context
+    
     useEffect(() => {
         if (submittedPost){
             getData()

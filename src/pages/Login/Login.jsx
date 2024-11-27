@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from "react";
 import Button_SignOut from "../Dashboard/components/Button_SignOut";
 import { Navigate, useNavigate} from "react-router-dom";
-import { checkAuth } from "../Dashboard/components/static/checkAuth";
+import { checkAuth } from "../../middleware";
 import "./Login.css"
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -16,9 +16,14 @@ export default function Login() {
     
 
     async function getSession(){
-        const checkTokenSession = await checkAuth();
-        setSession(checkTokenSession);
-        setIsLoading(false)
+        const checkSession = await checkAuth();
+        if (checkSession.data.status_code !== 200){
+            setSession(false)
+            setIsLoading(false)
+        } else {
+            setSession(true);
+            setIsLoading(false)
+        }
         
     };
 

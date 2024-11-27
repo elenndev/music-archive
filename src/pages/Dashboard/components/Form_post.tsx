@@ -1,15 +1,18 @@
 import Editor from "./Editor"
 import SubmitForm from "./static/submitPostForm"
 import Button_CancelPostEdit from "./Button_CancelPostEdit"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { DashboardContext} from "./Context_Dashboard"
+import { checkAuth } from "../../../middleware"
+import axios from "axios"
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+
 
 const Form_post: React.FC<{
     post_id?: string
 }> = ({ post_id }) => {
-    const [reqType, setReqType] = useState('')
-    let id = ""
-
+    let forSubmit_IsDraft = false
+    let forSubmit_OnEdit = false
 
     const style = {
         width: '900px',
@@ -24,19 +27,60 @@ const Form_post: React.FC<{
     if (!context) {
         throw new Error("DashboardContext não está disponível.");
     }
-    const { onEdit, setEditMode, setOnSubmittedPost, isDraft} = context
+    const { onEdit, onDrafts ,setOnDrafts ,setEditMode, setOnSubmittedPost, isDraft, setIsDraft} = context
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault()
-        let draftOrPost = ''
         const button =  (event.nativeEvent as SubmitEvent).submitter
+        // verififcar se esta lidando com a criação/edição de uma publicação ou um rascunho
         if(button){
             if (button.classList.contains('draft')){
-                draftOrPost = 'draft'
-                setReqType('draft')
+                forSubmit_IsDraft = true
+                setIsDraft(true)
+
+                if(onEdit){
+                    // rascunho que foi editado e vai ser salvo
+                    forSubmit_OnEdit = true
+                } else (
+                    // novo rascunho
+                    forSubmit_OnEdit = false
+                )
             } else {
-                draftOrPost= 'post'
-                setReqType('post')
+                forSubmit_IsDraft = false
+
+                if (onEdit){
+                    // publicação que está sendo editada
+                    forSubmit_OnEdit = true
+                } else {
+                    // nova pub
+                    forSubmit_OnEdit = false
+                }
+
+                // verificar se é um rascunho que vai ser enviado como publicação ou uma publicação criada direto
+                if (isDraft){
+
+                    // deletar o rascunho depois cria a publicação
+                    const auth = await checkAuth()
+                    if (auth.data.status_code !== 200){
+                        window.alert('Token inválido')
+                        return
+                    } else {
+                        const response = await axios.delete(`${SERVER_URL}/delete-draft`, {
+                            params: {get_id: post_id}
+                        })
+                        if (!response){
+                            window.alert('erro ao deletar rascunho')
+                            return
+                        }
+
+                        post_id = undefined
+                        setIsDraft(false)
+                        setEditMode(false)
+                        forSubmit_IsDraft = false
+                        forSubmit_OnEdit = false
+                    }
+                    
+                }
             }
         }
 
@@ -44,25 +88,30 @@ const Form_post: React.FC<{
         setIsSubmitting(true)
         setIsSubmitFail(false)
         setIsSubmitSuccess(false)
-        try {
-            if(post_id){ id=post_id}
-            
-            const result = await SubmitForm(event, reqType, draftOrPost, id , context)
+        try {            
+            const result = await SubmitForm(event, forSubmit_OnEdit, forSubmit_IsDraft, post_id)
             if (result !== null){
                 setIsSubmitting(true)
             }
             if (result === 200) {
                 setIsSubmitSuccess(true)
                 setOnSubmittedPost(true)
+                post_id = undefined
+                if(onDrafts && isDraft && !onEdit){
+                    // se era um rascunho que foi enviado como publicação, o <AllPosts> vai ser recarregado pra mostrar as publicações agora com a nova publciação inclusa
+                    setOnDrafts(false)
+                }
+                if (!onDrafts && isDraft){
+                    // se <AllPosts> está na aba de publicações e foi criado um rascunho, ele ssera recarregado na aba de rascunhos agora com o rascunho novo
+                    setOnDrafts(true)
+                }
+
                 if (onEdit){
                     setEditMode(false)
                 }
             } else if (result === false){
                 setIsSubmitSuccess(false)
                 setIsSubmitFail(true)
-                if (onEdit){
-                    setReqType('put')
-                }
                 return
             }
         }finally {
@@ -72,20 +121,6 @@ const Form_post: React.FC<{
     }
 
     
-
-    useEffect(() => {
-        if (!onEdit){
-            setIsSubmitFail(false)
-            setIsSubmitSuccess(false)
-        }
-        if (onEdit) {
-            setReqType('put')
-            if (post_id) { id = post_id }
-            
-        } else {
-            setReqType('post')
-        }    
-    }, [onEdit]);
 
 
 
