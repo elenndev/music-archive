@@ -12,6 +12,7 @@ import { lightTheme, darkTheme } from "../../components/static/themes.js";
 import GlobalTheme from "../../components/static/globals.js";
 
 import axios from 'axios';
+import Title_Post from "../../components/Title_Post.tsx";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 const ReadPost: React.FC = () => {
@@ -20,7 +21,7 @@ const ReadPost: React.FC = () => {
         'padding': '5px 30px'
     }
     const {id} = useParams<{id: string}>()
-    const [post, setPost] = useState<Model_Post[]>([])
+    const [post, setPost] = useState<Model_Post>()
     const [loading, setLoading] = useState(true)
 
 
@@ -34,6 +35,7 @@ const ReadPost: React.FC = () => {
             setPost(response.data);
             setLoading(false);
         }
+        
 
     }
 
@@ -73,16 +75,16 @@ const ReadPost: React.FC = () => {
         <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalTheme />
             <Header onChangeTheme={handleChangeTheme}/>
-            <main>  
-                {post.map((post) => (
+            <main>  { post && 
                     <article className="container read-post" key={post._id}>
-                        <h1>{post.title}</h1>
+                        <Title_Post title={post.title} />
                         <img src={post.cover}></img>
                         <Content_Post content={post.content}/>
                         <Link to={'/todas-publicacoes'} className="btn btn-secondary" style={ButtonStyle}>Voltar</Link>
-                    </article>
+                    </article>}
+                {/* {post.map((e) => (
 
-                ))}
+                ))} */}
             </main>
             <Footer />
         </ThemeProvider>

@@ -2,12 +2,16 @@
   --borderRadius: 49px;
 }
 
+::selection{
+  background: var(--DecorateColor);
+  color: var(--MainColor);
+}
+
 body {
   font-family: "League Spartan", sans-serif;
   color: var(--SecondaryColor);
   display: flex;
   flex-direction: column;
-
 }
 
 header {
@@ -112,6 +116,18 @@ header {
 main {
   width: 100vw;
 }
+
+.ql-editor {
+  color: var(--SecondaryColor); 
+}
+
+/* main>article.container.read-post{
+  .post_content{
+    a{
+      color: var(--LinkOnPostContent);
+    }
+  }
+} */
 
 footer{
   width: 90vw;

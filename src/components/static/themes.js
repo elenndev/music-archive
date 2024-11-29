@@ -5,7 +5,8 @@ export const lightTheme = {
     MainColor: "#D5D5D6",
     DecorateColor: "#1E1E1E",
     SecondaryColor: "black",
-    SecondaryColorDecorate: "#67676b"
+    SecondaryColorDecorate: "#67676b",
+    LinkOnPostContent: "rgb(37, 37, 128);"
 };
 
 export const darkTheme = {
@@ -15,5 +16,6 @@ export const darkTheme = {
     MainColor: "#2C2C30",
     DecorateColor: "#D5D5D6",
     SecondaryColor: "white",
-    SecondaryColorDecorate: "#4f4f52"
+    SecondaryColorDecorate: "#4f4f52",
+    LinkOnPostContent: "rgb(104, 104, 241)"
 };

@@ -10,13 +10,16 @@ main{
             margin: 0;
             margin-top: 10px;
             font-size: 2.5rem;
-            text-align: center;
             width: 100%;
         }
+        h1,h2{
+            text-align: center;
+        }
+
         img{
             margin-top: 5px;
             width: 90%;
-            height: 30%;
+            height: 550px;
             object-fit: cover;
         }
         .post_content{
@@ -24,10 +27,25 @@ main{
             max-width: 90%;
             font-size: 1.25rem;
             padding: 0 25px;
+            a{
+                font-weight: 600;
+                color: var(--LinkOnPostContent);
+            }
         }
     }
 }
 
 @media (max-width: 500px){
     main>.container.read-post>h1{font-size: 2rem}
+}
+@media (max-width: 850px){
+    main>.container.read-post>img{height: 350px}
+    main>.container.read-post>.post_content{
+        padding: 0 5px;
+        max-width: 97%;
+        width: 97%;
+    }
+}
+@media (max-width: 550px){
+    main>.container.read-post>img{height: 300px}
 }
