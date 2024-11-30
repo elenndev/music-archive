@@ -74,6 +74,13 @@ header {
       position: absolute;
     }
   }
+  .page-name{
+    position: absolute;
+    left: 50%;
+    margin: 0;
+    top: 10px;
+    transform: translateX(-50%);
+  }
   span{
     position: absolute;
     right:20%;
@@ -267,6 +274,15 @@ li{
 .btn-danger::after {
   background: #780e19;
 }
+
+@media (max-width: 787px){
+  header{
+    .page-name{
+      display: none;
+    }
+  }
+}
+
 @keyframes toggleOn {
   0% {
     transform: translateX(0);

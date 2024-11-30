@@ -30,6 +30,7 @@ const Header = ({ onChangeTheme }: { onChangeTheme: (newTheme: string) => void }
     return (
         <header id="header">
             <nav><a href="/" className="home-link"><p>inicio</p></a><a href="/sobre-mim" className="aboutMe-link"><p>sobre</p></a></nav>
+            <p className="page-name">Music Archive</p>
             <span className="changeThemeButton">
                 <input className="input" onChange={checkLightMode} type="checkbox" name="darkmode" id="dark-mode" checked={isChecked} />
                 <label htmlFor="dark-mode" className="label">
