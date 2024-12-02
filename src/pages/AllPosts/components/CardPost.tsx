@@ -33,7 +33,7 @@ functionEdit?: FunctionGetId;}> = ({ post, isDashboard, functionEdit}) => {
             <p className='post-card_date'>{date.dateMonth} | {date.dateDay}</p>
             <span>
                 <img alt={post.cover_description} src={post.cover}></img>
-                <Title_Post title={post.title}/>
+                <Title_Post title={post.title} isH1={false}/>
                 <Truncate
                     lines={3}
                     ellipsis={

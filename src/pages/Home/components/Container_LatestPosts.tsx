@@ -18,7 +18,7 @@ const Post: React.FC<{ post: Model_Post }> = ({ post }) => {
                 <p className="post_info_date">{date.dateMonth} | {date.dateDay}</p>
                 <Title_Post title={post.title}/>
             </div>
-            <img alt={post.cover_description} src={post.cover}></img>
+            <img alt={post.cover_description} src={post.cover} width="auto" height="auto" title={`capa do post ${post.title}`} loading="eager"></img>
             <Truncate
                 lines={10}
                 ellipsis={<>...</>}>
@@ -68,7 +68,7 @@ const LatestPosts = () => {
         <>
             <section className="container latest-posts">
                 <div className="container_header">
-                    <h2>Últimas publicações</h2>
+                    <h1>Últimas publicações</h1>
                     <Link to={'/todas-publicacoes'} className="btn btn-secondary all-posts" style={{marginRight: '40px'}}>Todas as publicações</Link>
                 </div>
                 {loading && <p>Carregando publicações...</p>}

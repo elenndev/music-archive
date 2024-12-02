@@ -1,12 +1,17 @@
 import DOMPurify from "dompurify"
 
-const Title_Post: React.FC<{title: string}> = ({title}) => {
+const Title_Post: React.FC<{title: string, isH1: boolean}> = ({title, isH1}) => {
     const TitleString = title
     const TitleHtml = DOMPurify.sanitize(TitleString)
 
 
     return(
-        <h1 className="post_title" dangerouslySetInnerHTML={{__html: TitleHtml}}></h1>
+        <>
+            {isH1?
+            ( <h1 className="post_title" dangerouslySetInnerHTML={{__html: TitleHtml}}></h1>)
+
+            : (<h2 className="post_title" dangerouslySetInnerHTML={{__html: TitleHtml}}></h2>)}
+        </>
     )
 }
 

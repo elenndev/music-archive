@@ -13,6 +13,8 @@ import { lightTheme, darkTheme } from "../../components/static/themes.js";
 import GlobalTheme from "../../components/static/globals.js";
 import axios from 'axios';
 import Button_GoToDrafts from '../Dashboard/components/Button_GoToDrafts.tsx';
+import { Helmet } from "react-helmet-async";
+
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 
@@ -158,6 +160,14 @@ onEdit?: boolean
 
     return (
         <>
+        <Helmet>
+            <title>Todas as publicações</title>
+            <link rel="canonical" href="https://music-archive-blog.vercel.app/todas-publicacoes/"/>
+            <meta
+                name="description"
+                content="Blog Music Archive: Comentando e recomendando músicas e playlists"
+            />
+        </Helmet>
         <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalTheme />
             {isDashboard ? (

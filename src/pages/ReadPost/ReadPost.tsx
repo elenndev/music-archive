@@ -10,6 +10,8 @@ import './ReadPost.css'
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../components/static/themes.js";
 import GlobalTheme from "../../components/static/globals.js";
+import { Helmet } from "react-helmet-async";
+
 
 import axios from 'axios';
 import Title_Post from "../../components/Title_Post.tsx";
@@ -72,19 +74,24 @@ const ReadPost: React.FC = () => {
 
     return(
         <>
+        <Helmet>
+            <title>Ler publicação</title>
+            <link rel="canonical" href="https://music-archive-blog.vercel.app/ler/"/>
+            <meta
+                name="description"
+                content="Blog Music Archive: Comentando e recomendando músicas e playlists"
+            />
+        </Helmet>
         <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalTheme />
             <Header onChangeTheme={handleChangeTheme}/>
             <main>  { post && 
                     <article className="container read-post" key={post._id}>
-                        <Title_Post title={post.title} />
-                        <img src={post.cover}></img>
+                        <Title_Post title={post.title} isH1 = {true} />
+                        <img src={post.cover} alt={post.cover_description} width="auto" height="auto" title={`capa do post ${post.title}`} loading="eager"></img>
                         <Content_Post content={post.content}/>
                         <Link to={'/todas-publicacoes'} className="btn btn-secondary" style={ButtonStyle}>Voltar</Link>
                     </article>}
-                {/* {post.map((e) => (
-
-                ))} */}
             </main>
             <Footer />
         </ThemeProvider>

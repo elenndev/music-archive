@@ -16,12 +16,16 @@ main#main_all-posts{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .container_header{
+        cursor: default;
+    }
 
     .card-container {
         --cardWidth: 15.5vw;
         display: grid;
         width: 100%;
-        grid-template-columns: repeat(3, auto);
+        grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+        max-width: 100%;
         row-gap: 10px;
         padding: 10px 5%;
 
@@ -54,7 +58,7 @@ main#main_all-posts{
                 display: inline-block;
                 h1{
                     font-size: 1.5em;
-                    position: relative;
+                    cursor: default;
                     z-index: 2;
                     margin: 0;
                 }

@@ -3,11 +3,12 @@ import SVG_spotify from '../../components/SVG_spotify'
 import SVG_lastFm from '../../components/SVG_lastFm'
 import SVG_email from '../../components/SVG_email'
 import SVG_github from '../../components/SVG_github'
-// import check_path from '../../../index.js'
 
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../components/static/themes.js";
 import GlobalTheme from "../../components/static/globals.js";
+import { Helmet } from "react-helmet-async";
+
 
 // Images
 import profileIcon from "../../components/profile-icon.webp"
@@ -34,11 +35,18 @@ const AboutMe = () => {
             }
         });
         updateStorageChange()
-        // check_path()
     }, [])
 
     return(
         <>
+        <Helmet>
+            <title>Todas as publicações</title>
+            <link rel="canonical" href="https://music-archive-blog.vercel.app/todas-publicacoes/"/>
+            <meta
+                name="description"
+                content="Pagina Sobre do blog Music Archive: Comentando e recomendando músicas e playlists"
+            />
+        </Helmet>
         <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalTheme />
             <Header onChangeTheme={handleChangeTheme} />

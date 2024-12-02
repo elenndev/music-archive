@@ -76,6 +76,7 @@ header {
   }
   .page-name{
     position: absolute;
+    cursor: default;
     left: 50%;
     margin: 0;
     top: 10px;

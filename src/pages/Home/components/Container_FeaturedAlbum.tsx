@@ -44,8 +44,8 @@ const FeaturedAlbum: React.FC = () => {
                 <>
                     <span className='album-content'>
                         <span className='album-cover-area'>
-                            <img src={featuredAlbum.images[0]?.url}  alt={`capa do album ${featuredAlbum.name} do artista ${featuredAlbum.artists}`} className='album-cover' />
-                            <img src={discoIcon} className='album-disco' alt="Disco"/>
+                            <img src={featuredAlbum.images[0]?.url}  alt={`capa do album ${featuredAlbum.name} do artista ${featuredAlbum.artists}`} className='album-cover' title="capa do album" height="auto" width="auto"  />
+                            <img src={discoIcon} className='album-disco' title='Disco' alt="Disco" width="auto" height="auto"/>
                         </span>
                         <span className='album-info'>
                             <p className='album-name'>{featuredAlbum.name}</p>

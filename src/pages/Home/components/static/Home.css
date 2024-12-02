@@ -1,7 +1,7 @@
 * {
     --imgProfileSize: 10vmin;
     /* --social-iconsSize: 4.5vmin; */
-    --social-iconsSize: 45px;
+    --social-iconsSize: 35px;
     --album-coverSize: 115px;
     /* --darkMode-SecondaryColor: #67676b; */
 
@@ -13,6 +13,18 @@
     .container.latest-posts{
         padding-bottom: 30px;
         width: 100%;
+        h1{
+            margin: 5px 0 0 40px;
+            font-size: 1.5em;
+        }
+        .container_header{
+            a.all-posts{
+                color: var(--SecondaryColor);
+            }
+            a.all-posts:hover{
+                color: var(--MainColor);
+            }
+        }
         .post{
             align-items: center;
             margin-top: 10px;
@@ -38,7 +50,7 @@
                     margin-right: 5px;
                     height: fit-content;
                 }
-                h1{
+                .post_title{
                     font-size: 1.5rem;
                     margin: 0;
                     margin-left: 10px;
@@ -277,7 +289,7 @@
 
 @media (max-width: 1497px){
     *{
-    --social-iconsSize: 40px;
+    --social-iconsSize: 30px;
 
     }
     #main{
@@ -349,7 +361,7 @@
 
 @media (max-width: 1251px){
     *{
-    --social-iconsSize: 40px;
+    --social-iconsSize: 35px;
     }
 
     #main{
@@ -374,7 +386,7 @@
 
 @media (max-width: 910px){
     *{
-    --social-iconsSize: 50px;
+    --social-iconsSize: 40px;
 
     }
     #main{
