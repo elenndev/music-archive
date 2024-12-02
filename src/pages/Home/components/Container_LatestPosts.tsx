@@ -16,7 +16,7 @@ const Post: React.FC<{ post: Model_Post }> = ({ post }) => {
         <div className="post">
             <div className="post_info">
                 <p className="post_info_date">{date.dateMonth} | {date.dateDay}</p>
-                <Title_Post title={post.title}/>
+                <Title_Post title={post.title} isH1={false}/>
             </div>
             <img alt={post.cover_description} src={post.cover} width="auto" height="auto" title={`capa do post ${post.title}`} loading="eager"></img>
             <Truncate
