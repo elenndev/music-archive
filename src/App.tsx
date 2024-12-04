@@ -1,5 +1,5 @@
 import './components/static/App.css';
-// import ReactGA from 'react-ga4';
+import ReactGA from 'react-ga4';
 import { Routes, Route } from 'react-router-dom';
 import AllPosts from './pages/AllPosts/AllPosts';
 import Home from './pages/Home/Home'
@@ -19,7 +19,7 @@ import { useEffect } from 'react';
 
 
 function App() {
-  // ReactGA.initialize('YOUR_TRACKING_ID');
+  ReactGA.initialize('G-CZ2MMR7HRP');
 
   useEffect(() => {
     if (!localStorage.getItem('theme')){
