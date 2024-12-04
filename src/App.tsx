@@ -1,6 +1,5 @@
 import './components/static/App.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { trackPageview } from './components/static/analytics';
 import AllPosts from './pages/AllPosts/AllPosts';
 import Home from './pages/Home/Home'
 import ReadPost from './pages/ReadPost/ReadPost'
@@ -10,6 +9,7 @@ import ProtectedRoute from './pages/Dashboard/ProtectedRoute';
 import { DashboardProvider } from './pages/Dashboard/components/Context_Dashboard';
 import AboutMe from './pages/AboutMe/AboutMe';
 import {HelmetProvider} from "react-helmet-async";
+import ReactGA from "react-ga4";
 // import { ThemeProvider } from 'styled-components';
 // import { lightTheme, darkTheme } from './components/static/themes';
 import { useEffect } from 'react';
@@ -19,9 +19,9 @@ import { useEffect } from 'react';
 
 
 function App() {
-  // ReactGA.initialize('G-CZ2MMR7HRP');
-  const location = useLocation()
-
+  ReactGA.initialize('G-CZ2MMR7HRP');
+  const pageLocation = useLocation()
+  ReactGA.send({ hitType: "pageview", page: pageLocation, title: document.title });
   useEffect(() => {
     if (!localStorage.getItem('theme')){
       localStorage.setItem('theme', 'dark')
@@ -29,9 +29,9 @@ function App() {
 
 }, [])
 
-useEffect(()=> {
-  trackPageview(location.pathname, document.title)
-}, [location])
+// useEffect(()=> {
+//   trackPageview(location.pathname, document.title)
+// }, [location])
 
 
   return (
