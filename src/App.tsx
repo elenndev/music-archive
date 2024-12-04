@@ -33,7 +33,7 @@ function App() {
   const Sitemap = () =>{
     
     useEffect(()=> {
-      fetch(`${SERVER_URL}sitemap`)
+      fetch(`${SERVER_URL}/sitemap`)
       .then((response) => (response.text()))
       .then((xml) => {
         const blob = new Blob([xml], {type: 'application/xml'})
