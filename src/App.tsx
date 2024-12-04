@@ -1,6 +1,6 @@
 import './components/static/App.css';
-import ReactGA from 'react-ga4';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { trackPageview } from './components/static/analytics';
 import AllPosts from './pages/AllPosts/AllPosts';
 import Home from './pages/Home/Home'
 import ReadPost from './pages/ReadPost/ReadPost'
@@ -19,13 +19,19 @@ import { useEffect } from 'react';
 
 
 function App() {
-  ReactGA.initialize('G-CZ2MMR7HRP');
+  // ReactGA.initialize('G-CZ2MMR7HRP');
+  const location = useLocation()
 
   useEffect(() => {
     if (!localStorage.getItem('theme')){
       localStorage.setItem('theme', 'dark')
     }
+
 }, [])
+
+useEffect(()=> {
+  trackPageview(location.pathname, document.title)
+}, [location])
 
 
   return (

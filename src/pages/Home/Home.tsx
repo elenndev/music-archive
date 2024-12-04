@@ -10,6 +10,8 @@ import { lightTheme, darkTheme } from "../../components/static/themes.js";
 import GlobalTheme from "../../components/static/globals.js";
 import { Helmet } from "react-helmet-async";
 
+
+
 const Home = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark")
     
