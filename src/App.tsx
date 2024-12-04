@@ -14,6 +14,7 @@ import ReactGA from "react-ga4";
 // import { lightTheme, darkTheme } from './components/static/themes';
 import { useEffect } from 'react';
 // import globals from './components/static/globals';
+const SERVER_URL = import.meta.env.VITE_SERVER_URL
 
 
 
@@ -29,9 +30,24 @@ function App() {
 
 }, [])
 
-// useEffect(()=> {
-//   trackPageview(location.pathname, document.title)
-// }, [location])
+  const Sitemap = () =>{
+    
+    useEffect(()=> {
+      fetch(`${SERVER_URL}sitemap`)
+      .then((response) => (response.text()))
+      .then((xml) => {
+        const blob = new Blob([xml], {type: 'application/xml'})
+        const url = URL.createObjectURL(blob)
+        window.location.href = url
+      }).catch((error) => console.error('Erro ao carregar o sitemap:', error));
+
+    },[])
+
+
+    return null
+
+  }
+
 
 
   return (
@@ -46,6 +62,7 @@ function App() {
           <Route path='/dashboard' element={
               <ProtectedRoute> <Dashboard /></ProtectedRoute>}/>
           <Route path='*' element={<h2>Página nao encontrada</h2>}></Route>
+          <Route path='/sitemap.xml' element={<Sitemap />}></Route>
         </Routes>
       </DashboardProvider>
     </HelmetProvider>
