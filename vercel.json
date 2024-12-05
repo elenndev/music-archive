@@ -1,6 +1,9 @@
 {
     "rewrites": [
       { "source": "/(.*)", "destination": "/" }
-    ]
+    ],
+    "redirects": [
+    { "source": "/sitemap.xml", "destination": "https://music-archive-server-qyb4.onrender.com/sitemap", "statusCode": 301 }
+  ]
   }
   
