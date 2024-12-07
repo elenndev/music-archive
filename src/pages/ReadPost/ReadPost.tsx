@@ -1,6 +1,6 @@
 import type Model_Post from "../../components/InterfacePost"
 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Content_Post from "../../components/Content_Post"
 import Header from '../../components/Header.tsx';
 import Footer from '../../components/Footer.tsx';
@@ -15,6 +15,7 @@ import { Helmet } from "react-helmet-async";
 
 import axios from 'axios';
 import Title_Post from "../../components/Title_Post.tsx";
+import { DashboardContext } from "../Dashboard/components/Context_Dashboard.tsx";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 const ReadPost: React.FC = () => {
@@ -26,9 +27,17 @@ const ReadPost: React.FC = () => {
     const [post, setPost] = useState<Model_Post>()
     const [loading, setLoading] = useState(true)
 
+    const context= useContext(DashboardContext)
+    if (!context) {
+        throw new Error("DashboardContext não está disponível.");
+    }
+
+    const {isDraft} = context
+    const postOrDraft = isDraft? "draft" : "post"
+
 
     const getData = async () =>{
-        const response = await axios.get(`${SERVER_URL}/get-post`,{
+        const response = await axios.get(`${SERVER_URL}/get-${postOrDraft}`,{
             params: {
                 get_id: id
             }
