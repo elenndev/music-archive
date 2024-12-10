@@ -44,9 +44,16 @@ const Dashboard = () => {
 
     
     }
-    function handleSubmitPlaylist(event: React.FormEvent){
-        submitBlogInfo("featured playlist",event, null)
-        getFeaturedPlaylist()
+    async function handleSubmitPlaylist(event: React.FormEvent){
+        const result = await submitBlogInfo("featured playlist",event, null)
+        if (result == null){
+            return false
+        }
+        if (result === 201){
+            console.log("informação atualizada com sucesso")
+            getFeaturedPlaylist()
+        }
+        
     }
 
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark")
@@ -74,6 +81,7 @@ const Dashboard = () => {
         setOnDrafts(false)
         updateStorageChange()
         getFeaturedPlaylist()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

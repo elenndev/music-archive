@@ -68,14 +68,15 @@ const SubmitForm = async (event, onEdit, isDraft, postId) => {
         if (createOrUpdate == 'post') {
             try{
                 const response = await axios.post(`${SERVER_URL}/create-${draftOrPost}`, data)
-                if (response.data) {
+                if (response.status == 201){
+                    console.log(response)
                     cleanForm()
-                    return 200
+                    return response.status
                 }
             }catch(error){
+                console.log(error)
                 editor.insertBefore(title_h1, editor.firstChild)
-                window.alert(error)
-                return false
+                window.alert(error.response.data)
             }
         } else if (createOrUpdate == 'put') {
             try{
@@ -87,14 +88,15 @@ const SubmitForm = async (event, onEdit, isDraft, postId) => {
                         'Content-Type': 'application/json' 
                     }
                 })
-                if (response.data) { 
+                if (response.status == 201) { 
                     cleanForm()
-                    return 200
+                    return response.status
                 }
                 
             } catch(error){
+                console.log(error)
                 editor.insertBefore(title_h1, editor.firstChild)
-                window.alert(error)
+                window.alert(error.response.data)
                 return false
             }
         }

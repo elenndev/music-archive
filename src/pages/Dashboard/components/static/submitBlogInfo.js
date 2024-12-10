@@ -23,18 +23,32 @@ function submitBlogInfo(type,event, info_data){
                     "info_name": "featured_playlist",
                     "text_value": playlist
                 }
-                const response = await axios.put(`${SERVER_URL}/set-fast-infos`, data)
-                if (response.data){
-                    document.querySelector('div.featured-playlist>form>input').value = ""
-                    return true
-                } else {
-                    return false
-            }}else if (type =="week album"){
+                try{
+                    const response = await axios.put(`${SERVER_URL}/set-fast-infos`, data)
+                    if (response.status == 201){
+                        document.querySelector('div.featured-playlist>form>input').value = ""
+                        return response.status
+                    }
+                }catch(error){
+                    console.log(error)
+                    window.alert(error.response.data)
+                }
+            }else if (type =="week album"){
                 const data = {
                     "info_name": "week_album",
                     "text_value": info_data
                 }
-                const response = await axios.put(`${SERVER_URL}/set-fast-infos`, data)
+                try{
+                    const response = await axios.put(`${SERVER_URL}/set-fast-infos`, data)
+                    if (response.status == 201){
+                        document.querySelector('div.featured-playlist>form>input').value = ""
+                        return response.status
+                    }
+                }catch(error){
+                    console.log(error)
+                    window.alert(error.response.data)
+                }
+                
             }
         }
 
