@@ -161,14 +161,19 @@ onEdit?: boolean
 
     return (
         <>
-        <Helmet>
-            <title>Todas as publicações</title>
-            <link rel="canonical" href="https://music-archive-blog.vercel.app/todas-publicacoes/"/>
-            <meta
-                name="description"
-                content="Blog Music Archive: Comentando e recomendando músicas e playlists"
-            />
-        </Helmet>
+        {isDashboard! && (
+            <>
+                <Helmet>
+                    <title>Todas as publicações</title>
+                    <link rel="canonical" href="https://music-archive-blog.vercel.app/todas-publicacoes/"/>
+                    <meta
+                        name="description"
+                        content="Blog Music Archive: Comentando e recomendando músicas e playlists"
+                    />
+                </Helmet>
+            </>
+            
+        )}
         <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalTheme />
             {isDashboard ? (
