@@ -1,0 +1,9 @@
+# pack-refs with: peeled fully-peeled sorted 
+b955dd07042b0c984e94951632bc953c3e36b703 refs/remotes/origin/auth
+d79e8522a0066be08f769588a690871592ee9224 refs/remotes/origin/change_database
+db4972d9ac5ac79bcf4687c51d7c9560a781d605 refs/remotes/origin/change_to_webp
+81dc4249a531a649f0a3cf954e609cd2eb7cf6c9 refs/remotes/origin/main
+7a3e192c097144582017682a107f9b648f896535 refs/remotes/origin/rascunho
+43fb41bfebf143ec3d46330d81ecdf8843f4cbf2 refs/remotes/origin/themes
+581cae1edb9e9b26953bcf5ea9e5c8eba86763c9 refs/remotes/origin/themes_changeButton
+9ca885634fce19d6a04e8e5141470e83f85cbb9c refs/remotes/origin/work

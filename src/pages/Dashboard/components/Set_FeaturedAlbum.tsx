@@ -28,9 +28,15 @@ const Set_FeaturedAlbum: React.FC = () => {
         setFeaturedAlbum(getAlbum)
     }
 
-    const handleSubmitAlbum = (submit_album: string) => {
+    const handleSubmitAlbum = async (submit_album: string) => {
         fetchAlbum(token)
-        submitBlogInfo("week album", null, submit_album)
+        const result = submitBlogInfo("week album", null, submit_album)
+        if (result == null){
+            return false
+        }
+        if (result === 201){
+            console.log("informação atualizada com sucesso")
+        }
     }
 
 

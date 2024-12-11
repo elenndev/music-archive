@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import check_path from "../..";
+import getTheme from "./static/getTheme";
 
 const Header = ({ onChangeTheme }: { onChangeTheme: (newTheme: string) => void }) => {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || getTheme());
     const [isChecked, setIsChecked] = useState(false)
 
 

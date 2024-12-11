@@ -13,6 +13,7 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../components/static/themes.js";
 import GlobalTheme from "../../components/static/globals.js";
 import axios from "axios";
+import getTheme from "../../components/static/getTheme.js";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 
@@ -44,15 +45,22 @@ const Dashboard = () => {
 
     
     }
-    function handleSubmitPlaylist(event: React.FormEvent){
-        submitBlogInfo("featured playlist",event, null)
-        getFeaturedPlaylist()
+    async function handleSubmitPlaylist(event: React.FormEvent){
+        const result = await submitBlogInfo("featured playlist",event, null)
+        if (result == null){
+            return false
+        }
+        if (result === 201){
+            console.log("informação atualizada com sucesso")
+            getFeaturedPlaylist()
+        }
+        
     }
 
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark")
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || getTheme())
     const updateStorageChange = () => {
-        const currentTheme = localStorage.getItem("theme");
-        setTheme(currentTheme || "dark");
+        const currentTheme = localStorage.getItem("theme") || getTheme();
+        setTheme(currentTheme);
     };
     
     const handleChangeTheme = (newTheme: string) => {
@@ -74,6 +82,7 @@ const Dashboard = () => {
         setOnDrafts(false)
         updateStorageChange()
         getFeaturedPlaylist()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

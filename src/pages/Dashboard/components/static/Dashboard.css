@@ -142,4 +142,11 @@ main{
         margin-top: 20px;
     }
 
+    button.btn.btn-primary{
+        background: var(--SecondaryColorDecorate);
+    }
+    button.btn.btn-primary:hover{
+        background: var(--DecorateColor);
+    }
+
 }

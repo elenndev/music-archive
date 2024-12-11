@@ -14,6 +14,7 @@ import GlobalTheme from "../../components/static/globals.js";
 import axios from 'axios';
 import Button_GoToDrafts from '../Dashboard/components/Button_GoToDrafts.tsx';
 import { Helmet } from "react-helmet-async";
+import getTheme from '../../components/static/getTheme.js';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
@@ -78,10 +79,10 @@ onEdit?: boolean
     };
 
     // THEME
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark")
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || getTheme())
     const updateStorageChange = () =>{
         const currentTheme = localStorage.getItem("theme")
-        setTheme(currentTheme || "dark")
+        setTheme(currentTheme || getTheme())
     }
 
     const handleChangeTheme = (newTheme: string) => {

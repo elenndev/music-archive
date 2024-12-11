@@ -16,12 +16,13 @@ import musicboardLogo from "../../components/musicboard.webp"
 import { useEffect, useState } from 'react'
 import Header from '../../components/Header.js'
 import Footer from '../../components/Footer.js'
+import getTheme from '../../components/static/getTheme.js'
 
 const AboutMe = () => {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark")
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || getTheme())
     const updateStorageChange = () => {
-        const currentTheme = localStorage.getItem("theme");
-        setTheme(currentTheme || "dark");
+        const currentTheme = localStorage.getItem("theme") || getTheme();
+        setTheme(currentTheme);
     };
     const handleChangeTheme = (newTheme: string) => {
         setTheme(newTheme)

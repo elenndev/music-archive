@@ -13,6 +13,7 @@ import ReactGA from "react-ga4";
 // import { ThemeProvider } from 'styled-components';
 // import { lightTheme, darkTheme } from './components/static/themes';
 import { useEffect } from 'react';
+import getTheme from './components/static/getTheme';
 // import globals from './components/static/globals';
 const SERVER_URL = import.meta.env.VITE_SERVER_URL
 
@@ -25,7 +26,8 @@ function App() {
   ReactGA.send({ hitType: "pageview", page: pageLocation, title: document.title });
   useEffect(() => {
     if (!localStorage.getItem('theme')){
-      localStorage.setItem('theme', 'dark')
+      localStorage.setItem('theme', getTheme())
+      // localStorage.setItem('theme', 'dark')
     }
 
 }, [])

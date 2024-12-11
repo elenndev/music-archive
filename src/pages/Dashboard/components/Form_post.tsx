@@ -93,7 +93,7 @@ const Form_post: React.FC<{
             if (result !== null){
                 setIsSubmitting(true)
             }
-            if (result === 200) {
+            if (result === 201) {
                 setIsSubmitSuccess(true)
                 setOnSubmittedPost(true)
                 post_id = undefined
@@ -109,7 +109,7 @@ const Form_post: React.FC<{
                 if (onEdit){
                     setEditMode(false)
                 }
-            } else if (result === false){
+            } else{
                 setIsSubmitSuccess(false)
                 setIsSubmitFail(true)
                 return

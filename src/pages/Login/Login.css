@@ -1,8 +1,18 @@
+body{
+    background: rgb(31, 31, 31);
+}
+
 #login-form{
     display: flex;
     flex-direction: column;
     gap: 5px;
     input{
         margin-bottom: 10px;
+    }
+    button{
+        background: rgb(61, 61, 61);
+    }
+    button:hover{
+        background: rgb(41, 39, 48);
     }
 }

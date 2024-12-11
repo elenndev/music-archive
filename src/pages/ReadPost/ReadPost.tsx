@@ -16,6 +16,7 @@ import { Helmet } from "react-helmet-async";
 import axios from 'axios';
 import Title_Post from "../../components/Title_Post.tsx";
 import { DashboardContext } from "../Dashboard/components/Context_Dashboard.tsx";
+import getTheme from "../../components/static/getTheme.js";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 const ReadPost: React.FC = () => {
@@ -50,11 +51,11 @@ const ReadPost: React.FC = () => {
 
     }
 
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark")
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || getTheme())
 
     const updateStorageChange = () => {
         const currentTheme = localStorage.getItem("theme");
-        setTheme(currentTheme || "dark");
+        setTheme(currentTheme || getTheme());
     };
     const handleChangeTheme = (newTheme: string) => {
         setTheme(newTheme)

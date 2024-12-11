@@ -9,17 +9,18 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../components/static/themes.js";
 import GlobalTheme from "../../components/static/globals.js";
 import { Helmet } from "react-helmet-async";
+import getTheme from "../../components/static/getTheme.js";
 
 
 
 const Home = () => {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark")
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || getTheme())
     
     // vai ser chamado uma vez que a pagina é carregada e ao mudar
     // em outras abas tambem
     const updateStorageChange = () => {
-        const currentTheme = localStorage.getItem("theme");
-        setTheme(currentTheme || "dark");
+        const currentTheme = localStorage.getItem("theme") || getTheme()
+        setTheme(currentTheme);
     };
     
     //callback que vai ser passado pro header
