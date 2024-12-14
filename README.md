@@ -3,6 +3,7 @@
 Projeto construido utilizando o React e conjutamente com a API criada especialmente para o mesmo.
 
 - Confira o blog [Music Archive](https://music-archive-blog.vercel.app) !
+- [Backend do site](https://github.com/elenndev/music-archive-server.git).
 
 ## Funcionalidades
 - Leitura e gerenciamento de publicações,rascunhos , playlist e albúm em destaque.
