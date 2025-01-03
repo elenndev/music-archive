@@ -4,6 +4,7 @@ import getDate from "../../../blog_configs";
 import Content_Post from "../../../components/Content_Post";
 import Button_PostReadMore from "../../../components/Button_PostReadMore";
 import Title_Post from "../../../components/Title_Post";
+import Container from "../../../components/Styled_Container"
 import { Truncate } from "@re-dev/react-truncate";
 import { Link } from "react-router-dom";
 import axios from 'axios';
@@ -66,7 +67,7 @@ const LatestPosts = () => {
 
     return(
         <>
-            <section className="container latest-posts">
+            <Container as="section" className="container latest-posts">
                 <div className="container_header">
                     <h1>Últimas publicações</h1>
                     <Link to={'/todas-publicacoes'} className="btn btn-secondary all-posts" style={{marginRight: '40px'}}>Todas as publicações</Link>
@@ -75,7 +76,7 @@ const LatestPosts = () => {
                 {posts.map((post)=>(
                     <Post key={post._id} post = {post}/>
                 ))}
-            </section>
+            </Container>
         </>
     )
 }

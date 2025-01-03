@@ -14,7 +14,7 @@ body {
   flex-direction: column;
 }
 
-header {
+/* header {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -119,7 +119,7 @@ header {
 
   }
 
-}
+} */
 
 main {
   width: 100vw;
@@ -129,77 +129,7 @@ main {
   color: var(--SecondaryColor); 
 }
 
-/* main>article.container.read-post{
-  .post_content{
-    a{
-      color: var(--LinkOnPostContent);
-    }
-  }
-} */
 
-footer{
-  width: 90vw;
-  margin-top: 30px;
-  border-top: solid 1px var(--SecondaryColor);
-
-  display: flex;
-  justify-content: center;
-  p{
-    margin: 0;
-    font-size: 1rem;
-  }
-  a{
-    height: 1rem;
-    color: var(--SecondaryColor);
-    display: flex;
-    max-width: fit-content;
-  }
-  li:hover>a{
-    font-weight: 600;
-  }
-  ul{
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    li.pageName{
-      cursor: default;
-    }
-    li{
-      padding: 5px 10px;
-      width: fit-content;
-    }
-  }
-  
-}
-
-.container{
-  padding: 0;
-  border: solid 1px var(--SecondaryColor);
-  border-radius: var(--borderRadius);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .container_header{
-    width: 100%;
-    border-bottom: solid 1px var(--SecondaryColor);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: end;
-    .buttons_area{
-      width: fit-content;
-      margin-right: 30px;
-    }
-    h2 {
-      margin: 5px 0 0 40px;
-    }
-    a.btn,button{
-      margin: 5px 5px;
-    }
-  }}
 
 a{
   cursor: pointer;

@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import Content_Post from "../../components/Content_Post"
 import Header from '../../components/Header.tsx';
 import Footer from '../../components/Footer.tsx';
+import Container from "../../components/Styled_Container"
 import { Link, useParams } from "react-router-dom"
 import './ReadPost.css'
 
@@ -96,12 +97,12 @@ const ReadPost: React.FC = () => {
         <GlobalTheme />
             <Header onChangeTheme={handleChangeTheme}/>
             <main>  { post && 
-                    <article className="container read-post" key={post._id}>
+                    <Container as="article" className="container read-post" key={post._id}>
                         <Title_Post title={post.title} isH1 = {true} />
                         <img src={post.cover} alt={post.cover_description} width="auto" height="auto" title={`capa do post ${post.title}`} loading="eager"></img>
                         <Content_Post content={post.content}/>
                         <Link to={'/todas-publicacoes'} className="btn btn-secondary" style={ButtonStyle}>Voltar</Link>
-                    </article>}
+                    </Container>}
             </main>
             <Footer />
         </ThemeProvider>

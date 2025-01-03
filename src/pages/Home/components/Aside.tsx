@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import SVG_lastFm from "../../../components/SVG_lastFm"
 import SVG_spotify from "../../../components/SVG_spotify"
 import FeaturedAlbum from "./Container_FeaturedAlbum"
+import Container from "../../../components/Styled_Container"
 import axios from "axios";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
@@ -45,7 +46,7 @@ const Aside = () => {
     }
     return (
         <aside>
-            <div className="container profile">
+            <Container className="container profile">
                 <a aria-label="Ler mais sobre o blog" href="/sobre-mim" className="profile-icon"><img loading="lazy" title="icone de perfil do blog" width="auto" height="auto" alt="imagem de perfil do site que serve de link para pagina Sobre do site" src={profileIcon}></img></a>
 
                 <span>
@@ -53,17 +54,17 @@ const Aside = () => {
                     <a aria-label="Abrir perfil do Lastfm" href="https://www.last.fm/user/GOTHMIKASA" target="_blank" rel="noopener norferrer" className="social-icons lastFm"><SVG_lastFm /></a>
                     <a aria-label="Abrir perfil do Musicboard" href="https://musicboard.app/mitskidasilva?rel=options" target="_blank" rel="noopener norferrer" className="social-icons musicBoard"><img loading="lazy" title="logo da rede social musicboard" width="50px" height="50px"  alt="logo do musicboard, circulo azul com um disco amarelo saindo de uma caixa branca com pouca opacidade" src={musicboardLogo}></img></a>
                 </span>
-            </div>
-            <div className="container album_week">
+            </Container>
+            <Container className="container album_week">
                 <p className="container-header">Albúm da semana</p>
                 <FeaturedAlbum />
-            </div>
-            <div className="container featured_playlist">
+            </Container>
+            <Container className="container featured_playlist">
                 <p className="container-header">Playlist em destaque</p>
                 {featuredPlaylist !== '' &&
                     <Iframe/>
                 }
-            </div>
+            </Container>
         </aside>
     )
 }
